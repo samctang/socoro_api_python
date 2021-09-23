@@ -5,10 +5,10 @@ from .database import Base
 
 
 class Audit:
-    created_by = Column(String)
-    created_on = Column(DateTime)
     last_modified_by = Column(String)
     last_modified_on = Column(DateTime)
+    created_by = Column(String)
+    created_on = Column(DateTime)
 
 
 class Operation(Base, Audit):
@@ -17,7 +17,7 @@ class Operation(Base, Audit):
     # company_id = Column(Integer, ForeignKey("companies.id"))
     company_id = Column(Integer)
     employee_id = Column(Integer)
-    operation_no = Column(String, unique=True)
+    operation_no = Column(String)
     operation_type_id = Column(Integer)
     agent_id = Column(Integer)
     shipper_id = Column(Integer)
