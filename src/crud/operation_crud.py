@@ -1,7 +1,6 @@
 from sqlalchemy.orm import Session
-
-from src.schemas import operation_schema
-from src.models import operation_model
+from ..schemas import operation_schema
+from ..models import operation_model
 
 
 def get_operations(db: Session, skip: int = 0, limit: int = 100):
