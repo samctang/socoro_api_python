@@ -1,14 +1,7 @@
 from sqlalchemy import Boolean, Column, ForeignKey, Integer, String, DateTime
 from sqlalchemy.orm import relationship
-
-from .database import Base
-
-
-class Audit:
-    last_modified_by = Column(String)
-    last_modified_on = Column(DateTime)
-    created_by = Column(String)
-    created_on = Column(DateTime)
+from ..database import Base
+from .audit_model import Audit
 
 
 class Operation(Base, Audit):

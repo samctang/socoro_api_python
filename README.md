@@ -1,3 +1,4 @@
 # socoro_api
+To start the project, run the following command from the project root:
 
-FastAPI and SQLAlchemy
+uvicorn src.main:app --reload

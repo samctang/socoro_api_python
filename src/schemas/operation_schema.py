@@ -32,14 +32,14 @@ class OperationBase(BaseModel):
     progress: int
     status: int
     submitted_date: datetime.datetime
-    completed_date: datetime.datetime
+    completed_date: datetime.datetime = None
+    last_modified_by: str = None
+    last_modified_on: datetime.datetime = None
 
 
 class OperationCreate(OperationBase):
     created_by: str
     created_on: datetime.datetime
-    last_modified_by: str
-    last_modified_on: datetime.datetime
 
 
 class Operation(OperationBase):
