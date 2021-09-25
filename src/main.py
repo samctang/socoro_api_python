@@ -7,6 +7,6 @@ app.include_router(operation.router)
 
 
 @app.get("/")
-async def redirect():
+def redirect():
     response = RedirectResponse(url='/docs')
     return response

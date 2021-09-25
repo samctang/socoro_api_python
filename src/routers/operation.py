@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, HTTPException
 from typing import List
 from sqlalchemy.orm import Session
 from ..schemas import operation_schema
@@ -11,15 +11,15 @@ router = APIRouter(
 )
 
 
-# @app.post("/users/", response_model=schemas.User)
-# def create_user(user: schemas.UserCreate, db: Session = Depends(get_db)):
-#     db_user = crud.get_user_by_email(db, email=user.email)
-#     if db_user:
-#         raise HTTPException(status_code=400, detail="Email already registered")
-#     return crud.create_user(db=db, user=user)
-
-
 @router.get("/", response_model=List[operation_schema.Operation])
 def read_operations(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
     operations = operation_crud.get_operations(db, skip=skip, limit=limit)
     return operations
+
+
+@router.post("/create", response_model=operation_schema.OperationCreate)
+def create_operation(operation: operation_schema.OperationCreate, db: Session = Depends(get_db)):
+    db_operation = operation_crud.get_operation_by_no(db, operation_no=operation.operation_no)
+    if db_operation:
+        raise HTTPException(status_code=400, detail="Operation No. already exists in the database.")
+    return operation_crud.add_operation(db=db, operation=operation)
