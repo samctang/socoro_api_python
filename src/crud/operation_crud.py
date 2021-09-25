@@ -11,8 +11,8 @@ def get_operations(db: Session, skip: int = 0, limit: int = 100):
 def add_operation(db: Session, operation: operation_schema.OperationCreate):
     db_operation = operation_model.Operation(
         company_id=operation.company_id,
-        employee_id=operation.employee_id,
         operation_no=operation.operation_no,
+        employee_id=operation.employee_id,
         operation_type_id=operation.operation_type_id,
         agent_id=operation.agent_id,
         shipper_id=operation.shipper_id,
@@ -40,7 +40,9 @@ def add_operation(db: Session, operation: operation_schema.OperationCreate):
         submitted_date=operation.submitted_date,
         completed_date=operation.completed_date,
         last_modified_by=operation.last_modified_by,
-        last_modified_on=operation.last_modified_on
+        last_modified_on=operation.last_modified_on,
+        created_by=operation.created_by,
+        created_on=operation.created_on
     )
     db.add(db_operation)
     db.commit()
