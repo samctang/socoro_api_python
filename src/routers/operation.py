@@ -10,7 +10,7 @@ router = APIRouter(
 )
 
 
-@router.get("/", response_model=List[operation_schema.Operation])
+@router.get("/all", response_model=List[operation_schema.Operation])
 def read_operations(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
     operations = operation_crud.get_operations(db, skip=skip, limit=limit)
     return operations

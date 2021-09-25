@@ -4,7 +4,7 @@ from ..models import operation_model
 
 
 def get_operations(db: Session, skip: int = 0, limit: int = 100):
-    return db.query(operation_model.Operation).order_by(operation_model.Operation.id.desc()).offset(skip).limit(
+    return db.query(operation_model.Operation).order_by(operation_model.Operation.id).offset(skip).limit(
         limit).all()
 
 
