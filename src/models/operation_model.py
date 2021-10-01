@@ -9,7 +9,7 @@ class Operation(Base):
     # company_id = Column(Integer, ForeignKey("companies.id"))
     company_id = Column(Integer)
     employee_id = Column(Integer)
-    operation_no = Column(String)
+    operation_no = Column(String, unique=True, index=True)
     operation_type_id = Column(Integer)
     agent_id = Column(Integer)
     shipper_id = Column(Integer)
