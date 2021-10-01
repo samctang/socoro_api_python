@@ -1,10 +1,9 @@
 from sqlalchemy import Boolean, Column, ForeignKey, Integer, String, DateTime
 from sqlalchemy.orm import relationship
 from ..database import Base
-from .audit_model import Audit
 
 
-class Operation(Base, Audit):
+class Operation(Base):
     __tablename__ = "operations"
     id = Column(Integer, primary_key=True, index=True)
     # company_id = Column(Integer, ForeignKey("companies.id"))
@@ -37,6 +36,10 @@ class Operation(Base, Audit):
     status = Column(Integer)
     submitted_date = Column(DateTime)
     completed_date = Column(DateTime)
+    last_modified_by = Column(String)
+    last_modified_on = Column(DateTime)
+    created_by = Column(String)
+    created_on = Column(DateTime)
 
     # items = relationship("Item", back_populates="owner")
 

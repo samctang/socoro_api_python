@@ -35,11 +35,12 @@ class OperationBase(BaseModel):
     completed_date: datetime.datetime = None
     last_modified_by: str = None
     last_modified_on: datetime.datetime = None
+    created_by: str
+    created_on: datetime.datetime
 
 
 class OperationCreate(OperationBase):
-    created_by: str
-    created_on: datetime.datetime
+    pass
 
 
 class Operation(OperationBase):
