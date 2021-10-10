@@ -10,8 +10,8 @@ router = APIRouter(
 )
 
 
-@router.get("/all", response_model=List[_schema.Operation])
-def read_operations(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
+@router.get("/all")
+def read_operations(skip: int = 0, limit: int = 10, db: Session = Depends(get_db)):
     operations = _crud.get_operations(db, skip, limit)
     if not operations:
         raise HTTPException(status_code=404, detail="No operations found")

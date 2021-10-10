@@ -3,9 +3,13 @@ from ..schemas import operation_schema as _schema
 from ..models import operation_model as _model
 
 
-def get_operations(db: Session, skip: int = 0, limit: int = 100):
-    return db.query(_model.Operation).order_by(_model.Operation.id).offset(skip).limit(
-        limit).all()
+def get_operations(db: Session, skip: int = 0, limit: int = 10):
+    return db.query(_model.Operation.operation_no, _model.OperationType.description.label('operation_type'),
+                    _model.Operation.progress, _model.Operation.status,
+                    _model.Operation.agent_id, _model.Operation.shipper_id,
+                    _model.Operation.submitted_date)\
+        .join(_model.OperationType, _model.OperationType.id == _model.Operation.operation_type_id)\
+        .order_by(_model.Operation.id).offset(skip).limit(limit).all()
 
 
 def add_operation(db: Session, operation: _schema.OperationCreate):
